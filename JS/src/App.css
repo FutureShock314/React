@@ -37,9 +37,8 @@
   padding: 2em;
 }
 
-.card > button {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.button {
+  margin-inline: 1em;
 }
 
 .read-the-docs {

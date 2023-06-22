@@ -1,10 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+// import 'bootstrap/dist/css/bootstrap.css';
+import Message from './components/Message.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [min, setMin] = useState(0);
+
+  const handleChange = (event) => setMin(event.target.value.toString());
+
+  function Decrement() {
+    if (count > min) {
+      setCount(count - 1);
+    }
+  }
 
   return (
     <>
@@ -18,12 +29,21 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button
+          className="button"
+          onClick={() => setCount((count) => count + 1)}
+        >
           count is {count}
         </button>
-        <button onClick={() => setCount((count) => count - 1)}>
-          decrement
-        </button>
+        {min ? (  
+          <button className="button" onClick={Decrement}>
+            decrement to no lower than {min}
+          </button>
+        ) : (
+          <button className="button" onClick={Decrement}>
+            decrement to no lower than 0
+          </button>
+        )}
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -31,8 +51,11 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <input type="number" id="numInput" onChange={handleChange} />
+      
+      <Message />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
